@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 import streamlit as st
 
 
-model = load_model(r'C:\Users\ohiom\Desktop\MLOps Class\model_vgg3.hdf5')
+model = load_model('model_vgg3.hdf5')
 
 st.title('X-ray Classification App')
 st.write('For predicting Covid, Viral Pneumonia and Normal conditions')
