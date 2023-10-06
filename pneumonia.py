@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from PIL import Image
-import cv2
 from tensorflow.keras.models import load_model
 import streamlit as st
 
@@ -22,8 +21,9 @@ if uploaded_file is not None:
     st.write('')
     
     if len(image.shape) < 3:
-        image1 = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
-        res_image = cv2.resize(image1, (128,128))
+        image1 = np.expand_dims(image, axis=-1)
+        #image1 = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        res_image = np.resize(image1, (128,128))
         img = np.array(res_image).reshape(-1, 128, 128, 3)
         
         # Rescale the image:
@@ -40,7 +40,7 @@ if uploaded_file is not None:
         #label = 'Brain Tumour' if prediction[0][0]>0.5 else 'No Tumour'
     else:
         #image1 = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
-        res_image = cv2.resize(image, (128,128))
+        res_image = np.resize(image, (128,128))
         img = np.array(res_image).reshape(-1, 128, 128, 3)
         
         # Rescale the image:
